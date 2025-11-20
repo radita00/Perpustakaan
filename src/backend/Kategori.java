@@ -10,16 +10,16 @@ import java.sql.*;
  * @author radit
  */
 public class Kategori {
-    private int idkategori;
+    private int idKategori;
     private String nama;
     private String keterangan;
 
     public int getIdKategori() {
-        return idkategori;
+        return idKategori;
     }
 
-    public void setIdKategori(int idkategori) {
-        this.idkategori = idkategori;
+    public void setIdKategori(int idKategori) {
+        this.idKategori = idKategori;
     }
 
     public String getNama() {
@@ -122,30 +122,32 @@ public class Kategori {
         return ListKategori;
     }
     public void save(){
-        if(getById(idkategori).getIdKategori() == 0)
+        if(getById(idKategori).getIdKategori() == 0)
         {
             String SQL = "INSERT INTO kategori (nama, keterangan) VALUES("
                     + " '" + this.nama + "', "
                     + " '" + this.keterangan + "' "
                     + " )";
-            this.idkategori = DBHelper.insertQueryGetId(SQL);
+            this.idKategori = DBHelper.insertQueryGetId(SQL);
         }
         else
         {
             String SQL = "UPDATE kategori SET "
                     + " nama = '" + this.nama + "', "
                     + " keterangan = '" + this.keterangan + "' "
-                    + " WHERE idkategori = '" + this.idkategori + "'";
+                    + " WHERE idkategori = '" + this.idKategori + "'";
             DBHelper.executeQuery(SQL);
         }
     }
     public void delete(){
-        String SQL = "DELETE FROM kategori WHERE idkategori = '"  + this.idkategori + "'";
+        String SQL = "DELETE FROM kategori WHERE idkategori = '"  + this.idKategori + "'";
         DBHelper.executeQuery(SQL);
     }
     public void deleteAll() {
-    String SQL = "DELETE FROM kategori";
-    DBHelper.executeQuery(SQL);
-}
-
+        String SQL = "DELETE FROM kategori";
+        DBHelper.executeQuery(SQL);
+    }
+    public String toString(){
+        return nama;
+    }
 }
